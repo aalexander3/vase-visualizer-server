@@ -1,15 +1,10 @@
 let router = require('express').Router();
-
-const index = (req, res) => {
-  console.log('started', req.method, 'in index')
-  return res.json({
-    status: 'success',
-    message: "ya did it"
-  })
-}
-
-router.get('/', index)
+let vaseController = require('./controllers/vaseController')
 
 
+
+router.get('/vases', vaseController.index)
+router.post('/vases', vaseController.new)
+router.get('/vases/:id', vaseController.find)
 
 module.exports = router;
