@@ -1,0 +1,14 @@
+{
+  "name": "vase-visualizer-server",
+  "version": "1.0.0",
+  "description": "node server for vase visualizer",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Arren Alexander",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
