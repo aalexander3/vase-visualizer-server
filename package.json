@@ -4,7 +4,9 @@
   "description": "node server for vase visualizer",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "nodemon index",
+    "seed": "node db/seeds/seeds.js"
   },
   "author": "Arren Alexander",
   "license": "ISC",
