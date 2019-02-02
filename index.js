@@ -2,6 +2,7 @@ let express = require('express')
 let routes = require('./routes/routes')
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
+let cors = require('cors')
 
 const app = express()
 
@@ -10,6 +11,8 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(bodyParser.json())
+
+app.use(cors())
 
 mongoose.connect('mongodb://localhost/vase-visualizer', { useNewUrlParser: true })
 
