@@ -1,6 +1,5 @@
 let express = require('express')
 let routes = require('./routes/routes')
-// let { flowerSeeds } = require('./db/seeds/seeds')
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 

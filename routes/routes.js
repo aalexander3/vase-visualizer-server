@@ -1,15 +1,21 @@
 let router = require('express').Router();
-let vaseController = require('./controllers/vaseController')
+let VaseController = require('./controllers/vaseController')
+let FlowerController = require('./controllers/flowerController')
 
 router.route('/vases')
-  .get(vaseController.index)
-  .post(vaseController.new);
+  .get(VaseController.index)
+  .post(VaseController.create);
 
 router.route('/vases/:id')
-  .get(vaseController.show);
+  .get(VaseController.show);
 
+router.route('/flowers')
+  .get(FlowerController.index)
+  .post(FlowerController.create);
 
-// router.route('/flowers')
+router.route('/flowers/:id')
+  .get(FlowerController.show);
+
 
 
 module.exports = router;

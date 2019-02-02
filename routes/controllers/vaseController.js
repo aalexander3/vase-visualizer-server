@@ -1,42 +1,30 @@
 Vase = require('../../db/models/vase')
-// index, show, create
+let { standardCallback } = require('./constants')
 
-exports.index = (req, res) => {
-  console.log('starting', req.method, 'from vase controller index')
+const VaseController = {
+  index: (req, res) => {
+    console.log('starting', req.method, 'from vase controller index')
+    Vase.find({}, (err, data) => standardCallback(err, data, res, req))
+  },
 
-  Vase.get((err, vases) => {
-    if (err) {
-      res.json({
-          status: "error",
-          message: err,
-      });
-    }
-    res.json({
-       status: "success",
-       message: "vases retrieved successfully",
-       data: vases
-     })
-  })
+  create: (req, res) => {
+    console.log('starting', req.method, 'from vase controller create')
+    Vase.new({ name: req.body.name }, (err, data) => standardCallback(err, data, res, req))
+  },
+
+  show: (req, res) => {
+    console.log('req id is: ', req.params.id)
+    Vase.show(req.params.id, (err, data) => standardCallback(err, data, res, req))
+  },
+
+  update: (req, res) => {
+    // add flower to vase functionality
+    // flowerId, vaseId
+    // find the vase
+    // find the flower ref
+    // push the flower onto the vase
+  }
 }
 
-exports.new = (req, res) => {
-  console.log('starting', req.method, 'from vase controller index')
-  // console.log(req)
-  Vase.new({ name: req.body.name }, (err, vase) => {
-    res.json({
-      message: 'New vase created!',
-      data: vase
-    })
-  })
-}
 
-exports.show = (req, res) => {
-  console.log('req id is: ', req.params.id)
-
-  Vase.show(req.params.id, (err, vase) => {
-    res.json({
-      message: 'heres the vase!',
-      data: vase
-    })
-  })
-}
+module.exports = VaseController

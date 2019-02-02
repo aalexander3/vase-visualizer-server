@@ -1,6 +1,6 @@
-let mongoose = require('mongoose');
+let { Schema, model } = require('mongoose');
 
-let vaseSchema = mongoose.Schema({
+let vaseSchema = Schema({
     name: {
         type: String,
         required: true
@@ -8,23 +8,23 @@ let vaseSchema = mongoose.Schema({
     create_date: {
         type: Date,
         default: Date.now
-    }
+    },
+    flowers: [{ type: Schema.Types.ObjectId, ref: 'Flower' }]
 })
 
-let Vase = mongoose.model('Vase', vaseSchema)
+let Vase = model('Vase', vaseSchema)
 
-Vase.get = (cb) => {
-  Vase.find(cb)
-}
-
-Vase.show = (id, cb) => {
-  Vase.findById(id, cb)
-}
+// Vase.show = (id, cb) => {
+//   Vase.findById(id, cb)
+// }
 
 Vase.new = (args, cb) => {
-  console.log(args)
   const newVase = new Vase({ name: args.name })
   newVase.save(cb)
 }
+//
+// Vase.update = (id, args, cb) => {
+//   Vase.findById(id, cb)
+// }
 
 module.exports = Vase
