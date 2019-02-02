@@ -11,8 +11,20 @@ let vaseSchema = mongoose.Schema({
     }
 })
 
-let Vase = module.exports = mongoose.model('vase', vaseSchema)
+let Vase = mongoose.model('Vase', vaseSchema)
 
-module.exports.get = (callback, limit) => {
-  Vase.find(callback).limit(limit);
+Vase.get = (cb) => {
+  Vase.find(cb)
 }
+
+Vase.show = (id, cb) => {
+  Vase.findById(id, cb)
+}
+
+Vase.new = (args, cb) => {
+  console.log(args)
+  const newVase = new Vase({ name: args.name })
+  newVase.save(cb)
+}
+
+module.exports = Vase

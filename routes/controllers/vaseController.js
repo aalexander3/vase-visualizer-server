@@ -1,5 +1,5 @@
 Vase = require('../../db/models/vase')
-
+// index, show, create
 
 exports.index = (req, res) => {
   console.log('starting', req.method, 'from vase controller index')
@@ -21,22 +21,22 @@ exports.index = (req, res) => {
 
 exports.new = (req, res) => {
   console.log('starting', req.method, 'from vase controller index')
+  // console.log(req)
+  Vase.new({ name: req.body.name }, (err, vase) => {
+    res.json({
+      message: 'New vase created!',
+      data: vase
+    })
+  })
 }
 
-exports.find = (req, res) => {
+exports.show = (req, res) => {
   console.log('req id is: ', req.params.id)
 
-  Vase.get((err, vase) => {
-    if (err) {
-      res.json({
-          status: "error",
-          message: err,
-      });
-    }
+  Vase.show(req.params.id, (err, vase) => {
     res.json({
-       status: "success",
-       message: "found vase: ",
-       data: vase
-     })
-  }, 1)
+      message: 'heres the vase!',
+      data: vase
+    })
+  })
 }
