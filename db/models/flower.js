@@ -5,6 +5,18 @@ let flowerSchema = Schema({
     type: String,
     required: true
   },
+  image: {
+    type: String
+  },
+  aroma: {
+    type: String
+  },
+  qualities: {
+    type: String
+  },
+  price: {
+    type: String
+  },
   create_date: {
       type: Date,
       default: Date.now
